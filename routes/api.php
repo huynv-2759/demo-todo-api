@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::prefix('job')->group(function () {
-    Route::get('/list-job', 'JobController@listJob');
-    Route::get('/job-detail/{id}', 'JobController@jobDetail');
-    Route::post('/create-job', 'JobController@createJob');
-    Route::put('/update-job/{id}', 'JobController@updateJob');
-    Route::delete('/delete-job/{id}', 'JobController@deleteJob');
+Route::Post('/login-user', 'UserController@loginUser');
+Route::get('job/job-detail/{id}', 'JobController@jobDetail');
+Route::group(['middleware' => ['auth.jwt']], function () {
+    Route::get('/get-user-infomation', 'UserController@getUserInfo');
+    Route::prefix('job')->group(function () {
+        Route::get('/list-job', 'JobController@listJob');
+        Route::post('/create-job', 'JobController@createJob');
+        Route::put('/update-job/{id}', 'JobController@updateJob');
+        Route::delete('/delete-job/{id}', 'JobController@deleteJob');
+    });
 });

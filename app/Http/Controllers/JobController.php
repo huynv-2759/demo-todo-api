@@ -15,7 +15,7 @@ class JobController extends Controller
     }
     public function JobDetail($id)
     {
-        $data = Job::findorfail($id)->load('store');
+        $data = Job::findorfail($id);
         return $this->responseApi(SystemParam::status_success, SystemParam::code_success, '', $data);
     }
     public function createJob(Request $request)

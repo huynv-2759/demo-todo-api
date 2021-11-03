@@ -8,8 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Traits\ApiResponse;
 use App\Traits\UploadImage;
-use App\Traits\MakeCodeRandom;
+use App\Traits\GetAuthenticatedUser;
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ApiResponse, UploadImage;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, ApiResponse, UploadImage, GetAuthenticatedUser;
 }
